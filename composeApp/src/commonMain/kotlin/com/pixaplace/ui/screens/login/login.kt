@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import com.pixaplace.ui.components.AppTextField
 import com.pixaplace.ui.components.PrimaryButton
 import org.jetbrains.compose.ui.tooling.preview.Preview
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -26,7 +25,11 @@ fun LoginScreen(
 ) {
     val state by vm.uiState.collectAsState()
 
-    if (state.success) onSuccess()
+    if (state.success) {
+        LaunchedEffect(state.success) {
+            onSuccess()
+        }
+    }
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -75,5 +78,4 @@ fun LoginScreenPreView() {
         onForgotClick = {},
         onSuccess = {}
     )
-
 }

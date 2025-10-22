@@ -17,6 +17,12 @@ fun SignupScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
 
+    if (state.success) {
+        LaunchedEffect(Unit) {
+            onSuccess()
+        }
+    }
+
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -31,25 +37,25 @@ fun SignupScreen(
 
             Spacer(Modifier.height(32.dp))
 
-            AppTextField(value = name, onValueChange = { password = it }, label = "Full Name")
+            AppTextField(value = state.name, onValueChange = viewModel::onNameChanged, label = "Full Name")
 
             Spacer(Modifier.height(12.dp))
 
-            AppTextField(value = email, onValueChange = { email = it }, label = "Email")
+            AppTextField(value = state.email, onValueChange = viewModel::onEmailChange, label = "Email")
 
             Spacer(Modifier.height(12.dp))
 
-            AppTextField(
-                value = password,
-                onValueChange = { password = it },
-                label = "Password",
-                isPassword = true
-            )
+            AppTextField(value = state.password, onValueChange = viewModel::onPasswordChange, label = "Password", isPassword = true)
 
             Spacer(Modifier.height(24.dp))
 
+            if (state.error != null) {
+                Text(state.error!!, color = MaterialTheme.colorScheme.error)
+                Spacer(Modifier.height(8.dp))
+            }
+
             PrimaryButton("Sign Up", enabled = !state.loading, loading = state.loading) {
-                onSuccess()
+               viewModel.signup()
             }
 
             Spacer(Modifier.height(16.dp))
