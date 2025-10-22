@@ -28,8 +28,7 @@ fun SignupScreen(
     var password by remember { mutableStateOf("") }
 
     Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier.widthIn(max = 360.dp).padding(24.dp),
@@ -40,17 +39,13 @@ fun SignupScreen(
             Spacer(Modifier.height(32.dp))
 
             AppTextField(
-                value = state.name,
-                onValueChange = viewModel::onNameChanged,
-                label = "Full Name"
+                value = state.name, onValueChange = viewModel::onNameChanged, label = "Full Name"
             )
 
             Spacer(Modifier.height(12.dp))
 
             AppTextField(
-                value = state.email,
-                onValueChange = viewModel::onEmailChange,
-                label = "Email"
+                value = state.email, onValueChange = viewModel::onEmailChange, label = "Email"
             )
 
             Spacer(Modifier.height(12.dp))

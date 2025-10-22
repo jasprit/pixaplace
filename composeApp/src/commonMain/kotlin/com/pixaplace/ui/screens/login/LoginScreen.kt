@@ -18,10 +18,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun LoginScreen(
-    vm: AuthViewModel,
-    onSignupClick: () -> Unit,
-    onForgotClick: () -> Unit,
-    onSuccess: () -> Unit
+    vm: AuthViewModel, onSignupClick: () -> Unit, onForgotClick: () -> Unit, onSuccess: () -> Unit
 ) {
     val state by vm.uiState.collectAsState()
 
@@ -32,8 +29,7 @@ fun LoginScreen(
     }
 
     Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier.widthIn(max = 360.dp).padding(24.dp),
@@ -65,17 +61,11 @@ fun LoginScreen(
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreView() {
     // Dummy ViewModel for preview
     val viewModel = remember { AuthViewModel() }
 
-    LoginScreen(
-        vm = viewModel,
-        onSignupClick = {},
-        onForgotClick = {},
-        onSuccess = {}
-    )
+    LoginScreen(vm = viewModel, onSignupClick = {}, onForgotClick = {}, onSuccess = {})
 }

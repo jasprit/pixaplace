@@ -5,7 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import com.pixaplace.presentation.auth.AuthNavGraph
+import com.pixaplace.ui.navigation.RootNavGraph
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -13,7 +13,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun App() {
     MaterialTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            AuthNavGraph()
+            RootNavGraph()
         }
     }
 }

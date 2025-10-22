@@ -10,14 +10,12 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ForgotPasswordScreen(
-    onBackToLogin: () -> Unit,
-    onResetSent: () -> Unit
+    onBackToLogin: () -> Unit, onResetSent: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
 
     Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier.widthIn(max = 360.dp).padding(24.dp),
@@ -35,8 +33,7 @@ fun ForgotPasswordScreen(
             Spacer(Modifier.height(24.dp))
 
             Button(
-                onClick = { onResetSent() },
-                modifier = Modifier.fillMaxWidth()
+                onClick = { onResetSent() }, modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Send Reset Link")
             }
