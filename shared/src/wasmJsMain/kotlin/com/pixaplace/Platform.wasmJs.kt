@@ -5,3 +5,7 @@ class WasmPlatform: Platform {
 }
 
 actual fun getPlatform(): Platform = WasmPlatform()
+
+// jsMain (web)
+actual fun isMobile() = false
+actual fun isTablet() = false

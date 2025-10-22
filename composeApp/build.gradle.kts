@@ -55,6 +55,10 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(projects.shared)
+
+            // project dependencies..
+            implementation(compose.materialIconsExtended) // ✅ for Icons.Filled, Outlined, Rounded, etc.
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.1")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

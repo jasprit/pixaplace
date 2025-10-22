@@ -5,3 +5,8 @@ class JsPlatform: Platform {
 }
 
 actual fun getPlatform(): Platform = JsPlatform()
+
+
+// jsMain (web)
+actual fun isMobile() = false
+actual fun isTablet() = false
