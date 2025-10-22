@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
+import androidx.compose.ui.text.input.ImeAction
 
 @Composable
 fun AppTextField(
@@ -22,7 +23,7 @@ fun AppTextField(
     onValueChange: (String) -> Unit,
     label: String,
     isPassword: Boolean = false,
-    keyboardType: KeyboardType = KeyboardType.Text
+    keyboardType: KeyboardType = KeyboardType.Text,
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -32,7 +33,14 @@ fun AppTextField(
         label = { Text(label) },
         singleLine = true,
         modifier = Modifier.fillMaxWidth(),
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next,
+            keyboardType = when {
+                isPassword -> KeyboardType.Password
+                keyboardType == KeyboardType.Email -> KeyboardType.Email
+                else -> KeyboardType.Text
+            }
+        ),
         visualTransformation = if (isPassword && !passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
         trailingIcon = {
             if (isPassword) {
