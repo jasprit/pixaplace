@@ -21,16 +21,12 @@ fun RootNavGraph() {
     val uiState by authViewModel.uiState.collectAsState()
 
     if (uiState.success) { // success = logged in
-        Scaffold(
-            bottomBar = {
-                BottomNavigationBar(
-                    navController = rootController,
-                    items = listOf(NavItem.Home, NavItem.Search, NavItem.Account)
-                )
-            }) { innerPadding ->
-            MainNavGraph(
-                navController = rootController
-            )
+        ResponsiveLayout(
+            navController = rootController,
+            bottomBarItems = listOf(NavItem.Home, NavItem.Search, NavItem.Account),
+            sidebarItems = listOf(NavItem.Home, NavItem.Search, NavItem.Account)
+        ) {
+            MainNavGraph(rootController)
         }
     } else {
         AuthNavGraph(

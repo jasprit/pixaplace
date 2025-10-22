@@ -5,3 +5,7 @@ class JVMPlatform: Platform {
 }
 
 actual fun getPlatform(): Platform = JVMPlatform()
+
+// jsMain (web)
+actual fun isMobile() = false
+actual fun isTablet() = false
