@@ -1,7 +1,10 @@
 package com.pixaplace
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import com.pixaplace.presentation.auth.AuthNavGraph
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -9,6 +12,8 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun App() {
     MaterialTheme {
-        AuthNavGraph()
+        Surface(modifier = Modifier.fillMaxSize()) {
+            AuthNavGraph()
+        }
     }
 }

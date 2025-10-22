@@ -5,8 +5,9 @@ import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.pixaplace.ui.login.AuthViewModel
-import com.pixaplace.ui.login.LoginScreen
+import com.pixaplace.ui.screens.home.Home
+import com.pixaplace.ui.screens.login.AuthViewModel
+import com.pixaplace.ui.screens.login.LoginScreen
 
 @Composable
 fun AuthNavGraph() {
@@ -22,14 +23,14 @@ fun AuthNavGraph() {
                 onSignupClick = { navController.navigate("signup") },
                 onForgotClick = { navController.navigate("forgot") },
                 vm = vm,
-                onSuccess = {navController.navigate("signup")}
+                onSuccess = { navController.navigate("signup") }
             )
         }
 
         composable("signup") {
             SignupScreen(
                 onLoginClick = { navController.popBackStack() },
-                onSuccess = { /* TODO: Go to home later */ }
+                onSuccess = { navController.navigate("home") }
             )
         }
 
@@ -38,6 +39,10 @@ fun AuthNavGraph() {
                 onBackToLogin = { navController.popBackStack() },
                 onResetSent = { navController.popBackStack() }
             )
+        }
+
+        composable("home") {
+            Home()
         }
     }
 }

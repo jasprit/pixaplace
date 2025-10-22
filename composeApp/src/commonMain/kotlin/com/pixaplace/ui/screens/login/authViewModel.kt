@@ -1,4 +1,4 @@
-package com.pixaplace.ui.login
+package com.pixaplace.ui.screens.login
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
