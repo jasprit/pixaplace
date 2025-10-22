@@ -15,34 +15,36 @@ fun ForgotPasswordScreen(
 ) {
     var email by remember { mutableStateOf("") }
 
-    Column(
-        modifier = Modifier
-            .padding(24.dp)
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        Text("Reset Password", style = MaterialTheme.typography.headlineMedium)
-        Spacer(Modifier.height(32.dp))
-
-        OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Email") },
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(Modifier.height(24.dp))
-
-        Button(
-            onClick = { onResetSent() },
-            modifier = Modifier.fillMaxWidth()
+        Column(
+            modifier = Modifier.widthIn(max = 360.dp).padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Send Reset Link")
-        }
+            Text("Reset Password", style = MaterialTheme.typography.headlineMedium)
+            Spacer(Modifier.height(32.dp))
 
-        Spacer(Modifier.height(16.dp))
-        TextButton(onClick = onBackToLogin) {
-            Text("Back to Login")
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                label = { Text("Email") },
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(24.dp))
+
+            Button(
+                onClick = { onResetSent() },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Send Reset Link")
+            }
+
+            Spacer(Modifier.height(16.dp))
+            TextButton(onClick = onBackToLogin) {
+                Text("Back to Login")
+            }
         }
     }
 }

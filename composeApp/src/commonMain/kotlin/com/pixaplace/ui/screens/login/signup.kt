@@ -27,25 +27,40 @@ fun SignupScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    Surface(modifier = Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
         Column(
-            modifier = Modifier.padding(24.dp).fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.widthIn(max = 360.dp).padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text("Create Account", style = MaterialTheme.typography.headlineMedium)
 
             Spacer(Modifier.height(32.dp))
 
-            AppTextField(value = state.name, onValueChange = viewModel::onNameChanged, label = "Full Name")
+            AppTextField(
+                value = state.name,
+                onValueChange = viewModel::onNameChanged,
+                label = "Full Name"
+            )
 
             Spacer(Modifier.height(12.dp))
 
-            AppTextField(value = state.email, onValueChange = viewModel::onEmailChange, label = "Email")
+            AppTextField(
+                value = state.email,
+                onValueChange = viewModel::onEmailChange,
+                label = "Email"
+            )
 
             Spacer(Modifier.height(12.dp))
 
-            AppTextField(value = state.password, onValueChange = viewModel::onPasswordChange, label = "Password", isPassword = true)
+            AppTextField(
+                value = state.password,
+                onValueChange = viewModel::onPasswordChange,
+                label = "Password",
+                isPassword = true
+            )
 
             Spacer(Modifier.height(24.dp))
 
@@ -55,7 +70,7 @@ fun SignupScreen(
             }
 
             PrimaryButton("Sign Up", enabled = !state.loading, loading = state.loading) {
-               viewModel.signup()
+                viewModel.signup()
             }
 
             Spacer(Modifier.height(16.dp))
