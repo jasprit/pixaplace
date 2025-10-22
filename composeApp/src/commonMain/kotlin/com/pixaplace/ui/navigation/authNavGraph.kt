@@ -28,9 +28,11 @@ fun AuthNavGraph() {
         }
 
         composable("signup") {
+            val viewModel = remember { AuthViewModel() }
             SignupScreen(
                 onLoginClick = { navController.popBackStack() },
-                onSuccess = { navController.navigate("home") }
+                onSuccess = { navController.navigate("home") },
+                viewModel = viewModel
             )
         }
 
