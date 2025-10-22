@@ -9,13 +9,15 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.OffsetMapping
+import androidx.compose.ui.text.input.TransformedText
 
 @Composable
 fun AppTextField(
@@ -41,7 +43,7 @@ fun AppTextField(
                 else -> KeyboardType.Text
             }
         ),
-        visualTransformation = if (isPassword && !passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
+        visualTransformation = if (isPassword && !passwordVisible) AppPasswordVisualTransformation() else VisualTransformation.None,
         trailingIcon = {
             if (isPassword) {
                 val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
@@ -54,4 +56,18 @@ fun AppTextField(
             }
         }
     )
+}
+
+private class AppPasswordVisualTransformation : VisualTransformation {
+    override fun filter(text: AnnotatedString): TransformedText {
+        return TransformedText(
+            AnnotatedString("*".repeat(text.text.length)),
+
+            /**
+             * [OffsetMapping.Identity] is a predefined [OffsetMapping] that can be used for the
+             * transformation that does not change the character count.
+             */
+            OffsetMapping.Identity
+        )
+    }
 }
