@@ -1,5 +1,6 @@
 package com.pixaplace
 
+import com.pixaplace.storage.IOSSecureStorage
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
 import platform.UIKit.UIDevice
@@ -20,3 +21,5 @@ actual fun isTablet(): Boolean {
     val minDimension = minOf(screenSize.width, screenSize.height)
     return minDimension >= 600.0
 }
+
+actual fun createSecureStorage(): SecureStorage = IOSSecureStorage()

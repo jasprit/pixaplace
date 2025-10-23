@@ -1,14 +1,14 @@
 package com.pixaplace.ui.navigation
 
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.rememberNavController
+import com.pixaplace.createSecureStorage
 import com.pixaplace.presentation.auth.AuthNavGraph
 import com.pixaplace.presentation.auth.MainNavGraph
-import com.pixaplace.ui.components.BottomNavigationBar
+import com.pixaplace.AuthRepository
 import com.pixaplace.ui.screens.login.AuthViewModel
 
 @Composable
@@ -17,7 +17,10 @@ fun RootNavGraph() {
     val rootController = rememberNavController()
 
     // Single AuthViewModel instance
-    val authViewModel = remember { AuthViewModel() }
+    val storage = remember { createSecureStorage() }
+    val authRepository = remember { AuthRepository(storage) }
+
+    val authViewModel = remember { AuthViewModel(authRepository) }
     val uiState by authViewModel.uiState.collectAsState()
 
     if (uiState.success) { // success = logged in

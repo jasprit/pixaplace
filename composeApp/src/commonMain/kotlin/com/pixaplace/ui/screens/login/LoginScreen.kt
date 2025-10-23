@@ -65,7 +65,7 @@ fun LoginScreen(
 @Composable
 fun LoginScreenPreView() {
     // Dummy ViewModel for preview
-    val viewModel = remember { AuthViewModel() }
-
-    LoginScreen(vm = viewModel, onSignupClick = {}, onForgotClick = {}, onSuccess = {})
+//    val viewModel = remember { AuthViewModel() }
+//
+//    LoginScreen(vm = viewModel, onSignupClick = {}, onForgotClick = {}, onSuccess = {})
 }
