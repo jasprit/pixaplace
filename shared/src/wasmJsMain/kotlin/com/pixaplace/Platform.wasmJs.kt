@@ -1,6 +1,6 @@
 package com.pixaplace
 
-class WasmPlatform: Platform {
+class WasmPlatform : Platform {
     override val name: String = "Web with Kotlin/Wasm"
 }
 
@@ -9,3 +9,4 @@ actual fun getPlatform(): Platform = WasmPlatform()
 // jsMain (web)
 actual fun isMobile() = false
 actual fun isTablet() = false
+actual fun createSecureStorage(): SecureStorage = JSSecureStorage()
