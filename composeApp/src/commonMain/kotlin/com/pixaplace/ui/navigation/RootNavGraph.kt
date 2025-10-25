@@ -27,7 +27,8 @@ fun RootNavGraph() {
         ResponsiveLayout(
             navController = rootController,
             bottomBarItems = listOf(NavItem.Home, NavItem.Search, NavItem.Account),
-            sidebarItems = listOf(NavItem.Home, NavItem.Search, NavItem.Account)
+            sidebarItems = listOf(NavItem.Home, NavItem.Search, NavItem.Account),
+            authViewModel = authViewModel
         ) {
             MainNavGraph(rootController)
         }

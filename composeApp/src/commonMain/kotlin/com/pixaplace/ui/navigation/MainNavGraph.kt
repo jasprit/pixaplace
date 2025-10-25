@@ -5,9 +5,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.pixaplace.ui.navigation.NavItem
-import com.pixaplace.ui.screens.main.Account
-import com.pixaplace.ui.screens.main.Home
-import com.pixaplace.ui.screens.main.Search
+import com.pixaplace.ui.screens.home.Account
+import com.pixaplace.ui.screens.home.Home
+import com.pixaplace.ui.screens.home.Search
 
 @Composable
 fun MainNavGraph(navController: NavHostController) {

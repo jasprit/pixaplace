@@ -11,13 +11,15 @@ import androidx.navigation.NavHostController
 import com.pixaplace.isMobile
 import com.pixaplace.isTablet
 import com.pixaplace.ui.components.BottomNavigationBar
+import com.pixaplace.ui.screens.login.AuthViewModel
 
 @Composable
 fun ResponsiveLayout(
     navController: NavHostController,
     bottomBarItems: List<NavItem> = emptyList(),
     sidebarItems: List<NavItem> = emptyList(),
-    content: @Composable () -> Unit
+    authViewModel: AuthViewModel,
+    content: @Composable () -> Unit,
 ) {
     val mobile = isMobile()
     val tablet = isTablet()
@@ -38,7 +40,10 @@ fun ResponsiveLayout(
         tablet -> {
             Row {
                 if (sidebarItems.isNotEmpty()) {
-                    SidebarMenu(navController, sidebarItems, width = 180.dp)
+                    SidebarMenu(
+                        navController, sidebarItems, width = 180.dp,
+                        onLogout = TODO(),
+                    )
                 }
                 Box(modifier = Modifier.weight(1f)) { content() }
             }
@@ -48,7 +53,16 @@ fun ResponsiveLayout(
             // Web/Desktop
             Row {
                 if (sidebarItems.isNotEmpty()) {
-                    SidebarMenu(navController, sidebarItems, width = 250.dp)
+                    SidebarMenu(navController, sidebarItems, width = 250.dp, onLogout = {
+                    authViewModel.logout()
+                        navController.navigate(NavItem.Login.route) {
+                            popUpTo(navController.graph.startDestinationId) {
+                                inclusive = true
+                            } // remove login from back stack
+                            launchSingleTop = true // prevent multiple copies of the same destination
+                        }
+
+                    })
                 }
                 Box(modifier = Modifier.weight(1f)) { content() }
             }

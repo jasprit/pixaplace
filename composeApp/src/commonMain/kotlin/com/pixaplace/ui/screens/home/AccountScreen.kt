@@ -1,4 +1,4 @@
-package com.pixaplace.ui.screens.main
+package com.pixaplace.ui.screens.home
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
