@@ -80,6 +80,6 @@ fun SignupScreen(
 @Preview(showBackground = true)
 @Composable
 fun SignupScreenPreview() {
-    val viewModel = AuthViewModel()
-    SignupScreen(onLoginClick = {}, onSuccess = {}, viewModel = viewModel)
+//    val viewModel = AuthViewModel()
+//    SignupScreen(onLoginClick = {}, onSuccess = {}, viewModel = viewModel)
 }

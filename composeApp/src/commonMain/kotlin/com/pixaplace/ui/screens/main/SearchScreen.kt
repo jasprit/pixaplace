@@ -20,9 +20,9 @@ fun Search() {
         Column(
             modifier = Modifier.widthIn(max = 360.dp).padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
-        ) {}
-
-        Text("Search Screen")
+        ) {
+            Text("Search Screen")
+        }
     }
 }
 

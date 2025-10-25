@@ -1,6 +1,8 @@
 package com.pixaplace.ui.screens.login
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.pixaplace.AuthRepository
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,10 +14,11 @@ data class AuthUiState(
     val repeatPassword: String = "",
     val loading: Boolean = false,
     val error: String? = null,
-    val success: Boolean = false
+    val success: Boolean = false,
+    val token: String? = null,
 )
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
     private val _uiState = MutableStateFlow(AuthUiState())
     val uiState: StateFlow<AuthUiState> = _uiState
 
@@ -24,6 +27,16 @@ class AuthViewModel : ViewModel() {
     fun onEmailChange(value: String) = update { it.copy(email = value, error = null) }
     fun onPasswordChange(value: String) = update { it.copy(password = value, error = null) }
     fun onNameChanged(value: String) = update { it.copy(name = value, error = null) }
+
+    init {
+        // Check if user is already logged in
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(
+                success = authRepository.isLoggedIn(),
+                token = authRepository.getToken()
+            )
+        }
+    }
 
     fun login() {
         val state = _uiState.value
@@ -43,6 +56,9 @@ class AuthViewModel : ViewModel() {
         // clear any existing error and start loading
         update { it.copy(loading = true, error = null) }
         scope.launch {
+            // Save token using repository
+            authRepository.saveToken(state.password) // example: save password as token
+
             delay(700)
             update { it.copy(loading = false, success = true) }
         }
@@ -72,6 +88,9 @@ class AuthViewModel : ViewModel() {
         // clear any existing error and start loading
         update { it.copy(loading = true, error = null) }
         scope.launch {
+            // Save token after signup
+            authRepository.saveToken(state.password) // example
+
             delay(700)
             update { it.copy(loading = false, success = true) }
         }
@@ -90,6 +109,14 @@ class AuthViewModel : ViewModel() {
         scope.launch {
             delay(700)
             update { it.copy(loading = false, success = true) }
+        }
+    }
+
+    // --- Logout ---
+    fun logout() {
+        scope.launch {
+            authRepository.removeToken()
+            update { it.copy(success = false, token = null) }
         }
     }
 
