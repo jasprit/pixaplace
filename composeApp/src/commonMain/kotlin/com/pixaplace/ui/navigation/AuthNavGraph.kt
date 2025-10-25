@@ -7,13 +7,23 @@ import androidx.navigation.compose.composable
 import com.pixaplace.ui.navigation.NavItem
 import com.pixaplace.ui.screens.login.AuthViewModel
 import com.pixaplace.ui.screens.login.LoginScreen
+import com.pixaplace.ui.screens.onboarding.OnboardingScreen
+import com.pixaplace.ui.screens.splash.SplashScreen
 
 @Composable
 fun AuthNavGraph(navController: NavHostController, authViewModel: AuthViewModel) {
 
     NavHost(
-        navController = navController, startDestination = NavItem.Login.route
+        navController = navController, startDestination = NavItem.Splash.route
     ) {
+        composable(NavItem.Splash.route) {
+            SplashScreen(onTimeout = { navController.navigate(NavItem.Onboarding.route) })
+        }
+
+        composable(NavItem.Onboarding.route) {
+            OnboardingScreen(onContinueClicked = { navController.navigate(NavItem.Login.route) })
+        }
+
         composable(NavItem.Login.route) {
             LoginScreen(
                 onSignupClick = { navController.navigate(NavItem.SignUp.route) },

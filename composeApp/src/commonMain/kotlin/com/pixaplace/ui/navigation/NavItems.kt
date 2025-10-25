@@ -10,6 +10,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 // --- NavItem.kt ---
 sealed class NavItem(val route: String, val label: String, val icon: ImageVector?) {
 
+    // Splash and Onboarding
+    data object Splash : NavItem("splash", "Splash", null)
+    data object Onboarding : NavItem("onboarding", "Onboarding", null)
+
     // Auth routes
     data object Login : NavItem("login", "Login", null)
     data object SignUp : NavItem("signUp", "Sign Up", null)
