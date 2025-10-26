@@ -13,16 +13,13 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.material3.TextFieldDefaults
-
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextStyle
-
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
-import com.example.theme.WhiteLabelColors
 
 @Composable
 fun AppTextField(
@@ -31,17 +28,23 @@ fun AppTextField(
     label: String,
     isPassword: Boolean = false,
     keyboardType: KeyboardType = KeyboardType.Text,
+    enabled: Boolean = true,
+    isError: Boolean = false,
+    supportingText: String? = null
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
-    val colors = WhiteLabelColors
 
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label, color = colors.Primary) },
+        label = { Text(label, style = MaterialTheme.typography.bodyMedium) },
         singleLine = true,
+        enabled = enabled,
+        isError = isError,
         modifier = Modifier.fillMaxWidth(),
-        textStyle = TextStyle(color = colors.Primary),
+        textStyle = LocalTextStyle.current.copy(
+            color = MaterialTheme.colorScheme.onSurface
+        ),
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Next,
             keyboardType = when {
@@ -54,15 +57,51 @@ fun AppTextField(
         trailingIcon = {
             if (isPassword) {
                 val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+                val description = if (passwordVisible) "Hide password" else "Show password"
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
                     Icon(
                         imageVector = image,
-                        contentDescription = if (passwordVisible) "Hide password" else "Show password",
-                        tint = colors.Primary // theme color for visibility icon
+                        contentDescription = description,
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
             }
         },
+        supportingText = supportingText?.let {
+            {
+                Text(
+                    it,
+                    color = if (isError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        },
+//        colors = OutlinedTextFieldDefaults.colors(
+//            // Focused state
+//            focusedBorderColor = MaterialTheme.colorScheme.primary,
+//            focusedLabelColor = MaterialTheme.colorScheme.primary,
+//            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+//
+//            // Unfocused state
+//            unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+//            unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
+//
+//            // Cursor
+//            cursorColor = MaterialTheme.colorScheme.primary,
+//
+//            // Text
+//            textColor = MaterialTheme.colorScheme.onSurface,
+//
+//            // Error state
+//            errorBorderColor = MaterialTheme.colorScheme.error,
+//            errorLabelColor = MaterialTheme.colorScheme.error,
+//            errorCursorColor = MaterialTheme.colorScheme.error,
+//
+//            // Disabled
+//            disabledBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
+//            disabledTextColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+//            disabledLabelColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+//        ),
+        shape = MaterialTheme.shapes.small
     )
 }
 

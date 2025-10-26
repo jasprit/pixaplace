@@ -35,31 +35,28 @@ fun OnboardingScreen(onContinueClicked: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.background)
             .padding(horizontal = 32.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(
-            modifier = Modifier
-                .widthIn(max = 360.dp),
+            modifier = Modifier.widthIn(max = 360.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             // App Name / Logo
             Text(
-                text = "PIXAPLACE",
-                style = MaterialTheme.typography.headlineMedium.copy(
-                    fontWeight = FontWeight.SemiBold,
-                    letterSpacing = 2.sp,
-                    color = Color.Black // high contrast for title
-                )
+                text = "Pixaplace",
+                style = MaterialTheme.typography.headlineMedium,
+                color = MaterialTheme.colorScheme.primary
             )
+
 
             // Subtitle / tagline
             Text(
                 text = "Your creative space, refined.",
                 style = MaterialTheme.typography.bodyLarge.copy(
-                    color = Color.Black.copy(alpha = 0.65f), // medium gray
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.65f),
                     textAlign = TextAlign.Center,
                     lineHeight = 22.sp
                 ),
@@ -110,14 +107,14 @@ private fun OnboardingFeatureItem(icon: ImageVector, text: String) {
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = Color.Black.copy(alpha = 0.75f),
+            tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.75f),
             modifier = Modifier.size(28.dp)
         )
 
         Text(
             text = text,
             style = MaterialTheme.typography.bodyLarge.copy(
-                color = Color.Black.copy(alpha = 0.85f),
+                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.85f),
                 lineHeight = 22.sp
             )
         )

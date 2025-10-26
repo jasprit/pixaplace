@@ -11,8 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -31,7 +32,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.theme.WhiteLabelColors
+import com.pixaplace.ui.components.SecondaryButton
 
 @Composable
 fun SidebarMenu(
@@ -41,7 +42,6 @@ fun SidebarMenu(
     onLogout: () -> Unit
 ) {
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
-    val themeColors = WhiteLabelColors
     val topPadding = 200.dp
 
     var showLogoutDialog by remember { mutableStateOf(false) }
@@ -51,9 +51,11 @@ fun SidebarMenu(
             .width(width)
             .fillMaxHeight()
             .padding(2.dp),
-        shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = themeColors.Surface)
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
+        )
     ) {
         Column(
             modifier = Modifier
@@ -69,8 +71,16 @@ fun SidebarMenu(
             ) {
                 items.forEach { item ->
                     val selected = currentRoute == item.route
-                    val backgroundColor = if (selected) themeColors.Primary.copy(alpha = 0.2f) else Color.Transparent
-                    val textColor = if (selected) themeColors.Primary else themeColors.OnSurface
+                    val backgroundColor = if (selected)
+                        MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
+                    else
+                        Color.Transparent
+
+                    val textColor = if (selected)
+                        MaterialTheme.colorScheme.primary
+                    else
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    // WHY: onSurfaceVariant = subtle text, perfect for inactive items
 
                     Row(
                         modifier = Modifier
@@ -107,14 +117,12 @@ fun SidebarMenu(
             }
 
             // Logout button at bottom
-            Button(
-                onClick = { showLogoutDialog = true },
-                modifier = Modifier
-                    .fillMaxWidth(0.8f)
-                    .padding(bottom = 16.dp)
-            ) {
-                Text("Logout")
-            }
+            SecondaryButton(
+                "Logout",
+                onClick = { showLogoutDialog = true }
+            )
+
+            Spacer(modifier = Modifier.width(2.dp))
         }
     }
 
@@ -125,19 +133,31 @@ fun SidebarMenu(
             title = { Text("Logout") },
             text = { Text("Are you sure you want to logout?") },
             confirmButton = {
-                TextButton(onClick = {
-                    showLogoutDialog = false
-
-                    onLogout.invoke()
-                }) {
-                    Text("Yes", color = themeColors.OnPrimary)
+                TextButton(
+                    onClick = {
+                        showLogoutDialog = false
+                        onLogout()
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.error // CHANGED: Red "Yes"
+                    )
+                ) {
+                    Text("Yes")
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showLogoutDialog = false }) {
-                    Text("Cancel", color = themeColors.Surface)
+                TextButton(
+                    onClick = { showLogoutDialog = false },
+                    colors = ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.onSurface // CHANGED: Neutral "Cancel"
+                    )
+                ) {
+                    Text("Cancel")
                 }
-            }
+            },
+            containerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+            textContentColor = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
 }
