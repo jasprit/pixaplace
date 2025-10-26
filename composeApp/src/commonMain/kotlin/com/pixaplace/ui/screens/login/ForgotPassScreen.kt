@@ -55,7 +55,7 @@ fun ForgotPasswordScreen(
             // Send Button
             PrimaryButton(
                 text = "Send",
-                onClick = { onResetSent }
+                onClick = onResetSent
             )
 
             Spacer(Modifier.height(16.dp))
@@ -63,7 +63,7 @@ fun ForgotPasswordScreen(
             // Back to Login
             TertiaryButton(
                 text = "Back to Login",
-                onClick = { onBackToLogin }
+                onClick = onBackToLogin
             )
         }
     }
