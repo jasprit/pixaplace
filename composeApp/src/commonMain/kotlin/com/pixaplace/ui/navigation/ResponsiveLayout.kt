@@ -31,8 +31,7 @@ fun ResponsiveLayout(
                     if (bottomBarItems.isNotEmpty()) {
                         BottomNavigationBar(navController, bottomBarItems)
                     }
-                }
-            ) { innerPadding ->
+                }) { innerPadding ->
                 Box(Modifier.padding(innerPadding)) { content() }
             }
         }
@@ -54,7 +53,7 @@ fun ResponsiveLayout(
             Row {
                 if (sidebarItems.isNotEmpty()) {
                     SidebarMenu(navController, sidebarItems, width = 250.dp, onLogout = {
-                    authViewModel.logout()
+                        authViewModel.logout()
                         navController.navigate(NavItem.Login.route) {
                             popUpTo(navController.graph.startDestinationId) {
                                 inclusive = true
