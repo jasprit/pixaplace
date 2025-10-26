@@ -13,11 +13,16 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.TextFieldDefaults
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextStyle
+
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
+import com.example.theme.WhiteLabelColors
 
 @Composable
 fun AppTextField(
@@ -28,13 +33,15 @@ fun AppTextField(
     keyboardType: KeyboardType = KeyboardType.Text,
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
+    val colors = WhiteLabelColors
 
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label) },
+        label = { Text(label, color = colors.Primary) },
         singleLine = true,
         modifier = Modifier.fillMaxWidth(),
+        textStyle = TextStyle(color = colors.Primary),
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Next,
             keyboardType = when {
@@ -50,11 +57,12 @@ fun AppTextField(
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
                     Icon(
                         imageVector = image,
-                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                        contentDescription = if (passwordVisible) "Hide password" else "Show password",
+                        tint = colors.Primary // theme color for visibility icon
                     )
                 }
             }
-        }
+        },
     )
 }
 

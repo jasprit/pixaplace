@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.theme.WhiteLabelColors
 
 @Composable
 fun SidebarMenu(
@@ -40,7 +41,7 @@ fun SidebarMenu(
     onLogout: () -> Unit
 ) {
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
-    val themeColors = MaterialTheme.colorScheme
+    val themeColors = WhiteLabelColors
     val topPadding = 200.dp
 
     var showLogoutDialog by remember { mutableStateOf(false) }
@@ -49,10 +50,10 @@ fun SidebarMenu(
         modifier = Modifier
             .width(width)
             .fillMaxHeight()
-            .padding(8.dp),
+            .padding(2.dp),
         shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = themeColors.surface)
+        colors = CardDefaults.cardColors(containerColor = themeColors.Surface)
     ) {
         Column(
             modifier = Modifier
@@ -68,8 +69,8 @@ fun SidebarMenu(
             ) {
                 items.forEach { item ->
                     val selected = currentRoute == item.route
-                    val backgroundColor = if (selected) themeColors.primary.copy(alpha = 0.2f) else Color.Transparent
-                    val textColor = if (selected) themeColors.primary else themeColors.onSurface
+                    val backgroundColor = if (selected) themeColors.Primary.copy(alpha = 0.2f) else Color.Transparent
+                    val textColor = if (selected) themeColors.Primary else themeColors.OnSurface
 
                     Row(
                         modifier = Modifier
@@ -129,12 +130,12 @@ fun SidebarMenu(
 
                     onLogout.invoke()
                 }) {
-                    Text("Yes")
+                    Text("Yes", color = themeColors.OnPrimary)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showLogoutDialog = false }) {
-                    Text("Cancel")
+                    Text("Cancel", color = themeColors.Surface)
                 }
             }
         )
