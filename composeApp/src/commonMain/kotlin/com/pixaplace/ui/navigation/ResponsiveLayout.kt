@@ -42,7 +42,7 @@ fun ResponsiveLayout(
                 if (sidebarItems.isNotEmpty()) {
                     SidebarMenu(
                         navController, sidebarItems, width = 180.dp,
-                        onLogout = TODO(),
+                        onLogout = {},
                     )
                 }
                 Box(modifier = Modifier.weight(1f)) { content() }
