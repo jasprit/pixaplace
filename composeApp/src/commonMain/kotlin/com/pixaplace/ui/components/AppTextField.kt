@@ -24,13 +24,14 @@ import androidx.compose.ui.text.input.TransformedText
 @Composable
 fun AppTextField(
     value: String,
-    onValueChange: (String) -> Unit,
     label: String,
     isPassword: Boolean = false,
     keyboardType: KeyboardType = KeyboardType.Text,
     enabled: Boolean = true,
     isError: Boolean = false,
-    supportingText: String? = null
+    supportingText: String? = null,
+    modifier: Modifier = Modifier.fillMaxWidth(),
+    onValueChange: (String) -> Unit,
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -41,7 +42,7 @@ fun AppTextField(
         singleLine = true,
         enabled = enabled,
         isError = isError,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier,
         textStyle = LocalTextStyle.current.copy(
             color = MaterialTheme.colorScheme.onSurface
         ),

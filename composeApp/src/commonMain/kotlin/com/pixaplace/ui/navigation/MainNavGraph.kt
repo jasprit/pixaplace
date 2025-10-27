@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.pixaplace.ui.navigation.NavItem
-import com.pixaplace.ui.screens.home.Account
+import com.pixaplace.ui.screens.account.Account
 import com.pixaplace.ui.screens.home.Home
 import com.pixaplace.ui.screens.home.Search
 
