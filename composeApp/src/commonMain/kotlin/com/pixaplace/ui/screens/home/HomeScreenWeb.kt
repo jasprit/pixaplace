@@ -48,7 +48,7 @@ fun DealsHomeWeb(
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
             AppTextField(
                 value = state.searchQuery,
-                onValueChange = { /* update */ },
+                onValueChange = { },
                 label = "Search deals",
                 modifier = Modifier.weight(1f).padding(end = 16.dp)
             )
@@ -56,7 +56,7 @@ fun DealsHomeWeb(
                 items(categories) { cat ->
                     FilterChip(
                         selected = state.selectedCategory == cat,
-                        onClick = { /* filter */ },
+                        onClick = { },
                         label = { Text(cat) })
                 }
             }
