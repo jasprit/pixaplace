@@ -55,7 +55,7 @@ fun HomeScreenMobile(onMoreClicked: () -> Unit) {
                 AppTextField(
                     value = "",
                     onValueChange = { /* Search logic */ },
-                    label = "Search deals",
+                    label = "Search deals, brands, or categories...",
                     keyboardType = KeyboardType.Text
                 )
 

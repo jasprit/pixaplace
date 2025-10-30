@@ -49,16 +49,19 @@ fun DealsHomeWeb(
             AppTextField(
                 value = state.searchQuery,
                 onValueChange = { },
-                label = "Search deals",
+                label = "Search deals, brands, or categories...",
                 modifier = Modifier.weight(1f).padding(end = 16.dp)
             )
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(categories) { cat ->
-                    FilterChip(
-                        selected = state.selectedCategory == cat,
-                        onClick = { },
-                        label = { Text(cat) })
-                }
+        }
+
+        Spacer(Modifier.height(24.dp))
+
+        LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            items(categories) { cat ->
+                FilterChip(
+                    selected = state.selectedCategory == cat,
+                    onClick = { },
+                    label = { Text(cat) })
             }
         }
 
