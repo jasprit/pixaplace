@@ -59,6 +59,8 @@ kotlin {
             // project dependencies..
             implementation(compose.materialIconsExtended) // ✅ for Icons.Filled, Outlined, Rounded, etc.
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.1")
+
+            implementation(project(":shared"))  // ← This brings in Koin
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
