@@ -29,7 +29,6 @@ fun DealsHomeWeb(
         modifier = Modifier
             .fillMaxSize()
             .padding(32.dp)
-        //   .verticalScroll(rememberScrollState())
     ) {
         // Header
         Text(
