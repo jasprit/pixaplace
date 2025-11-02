@@ -1,5 +1,7 @@
 package com.pixaplace
 
+import com.pixaplace.platform.Platform
+import com.pixaplace.platform.SecureStorage
 import com.pixaplace.storage.IOSSecureStorage
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents

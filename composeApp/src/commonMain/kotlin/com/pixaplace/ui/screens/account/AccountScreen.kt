@@ -1,7 +1,7 @@
 package com.pixaplace.ui.screens.account
 
 import androidx.compose.runtime.Composable
-import com.pixaplace.isMobile
+import com.pixaplace.platform.isMobile
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 

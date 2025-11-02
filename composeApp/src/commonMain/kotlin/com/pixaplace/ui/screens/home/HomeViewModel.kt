@@ -1,7 +1,7 @@
 package com.pixaplace.ui.screens.home
 
 import androidx.lifecycle.ViewModel
-import com.pixaplace.AuthRepository
+import com.pixaplace.platform.AuthRepository
 import kotlinx.coroutines.*
 
 

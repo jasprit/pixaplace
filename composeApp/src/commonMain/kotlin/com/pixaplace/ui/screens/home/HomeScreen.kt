@@ -4,7 +4,7 @@ import HomeScreenMobile
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.pixaplace.isMobile
+import com.pixaplace.platform.isMobile
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 

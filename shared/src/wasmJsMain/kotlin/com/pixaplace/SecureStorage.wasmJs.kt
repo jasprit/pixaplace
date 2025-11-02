@@ -1,6 +1,6 @@
 package com.pixaplace
 
-import com.pixaplace.SecureStorage
+import com.pixaplace.platform.SecureStorage
 import kotlinx.browser.localStorage
 
 class JSSecureStorage : SecureStorage {

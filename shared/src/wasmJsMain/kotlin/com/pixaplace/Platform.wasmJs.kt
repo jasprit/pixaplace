@@ -1,5 +1,8 @@
 package com.pixaplace
 
+import com.pixaplace.platform.Platform
+import com.pixaplace.platform.SecureStorage
+
 class WasmPlatform : Platform {
     override val name: String = "Web with Kotlin/Wasm"
 }

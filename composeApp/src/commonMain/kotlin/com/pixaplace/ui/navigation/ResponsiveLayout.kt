@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.pixaplace.isMobile
-import com.pixaplace.isTablet
+import com.pixaplace.platform.isMobile
+import com.pixaplace.platform.isTablet
 import com.pixaplace.ui.components.BottomNavigationBar
 import com.pixaplace.ui.screens.login.AuthViewModel
 

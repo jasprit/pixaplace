@@ -1,6 +1,6 @@
 package com.pixaplace.storage
 
-import com.pixaplace.SecureStorage
+import com.pixaplace.platform.SecureStorage
 import platform.Foundation.NSUserDefaults
 
 class IOSSecureStorage : SecureStorage {

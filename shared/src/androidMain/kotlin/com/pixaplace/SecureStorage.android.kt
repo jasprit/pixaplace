@@ -1,7 +1,7 @@
 package com.pixaplace.storage
 
 import android.content.Context
-import com.pixaplace.SecureStorage
+import com.pixaplace.platform.SecureStorage
 
 class AndroidSecureStorage(context: Context) : SecureStorage {
     private val prefs = context.getSharedPreferences("secure_storage", Context.MODE_PRIVATE)

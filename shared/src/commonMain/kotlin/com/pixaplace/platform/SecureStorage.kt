@@ -1,4 +1,8 @@
-package com.pixaplace
+package com.pixaplace.platform
+
+
+
+//expect fun createSecureStorage(): SecureStorage
 
 interface SecureStorage {
     suspend fun save(key: String, value: String)

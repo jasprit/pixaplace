@@ -5,10 +5,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.rememberNavController
-import com.pixaplace.createSecureStorage
+import com.pixaplace.platform.createSecureStorage
 import com.pixaplace.presentation.auth.AuthNavGraph
 import com.pixaplace.presentation.auth.MainNavGraph
-import com.pixaplace.AuthRepository
+import com.pixaplace.platform.AuthRepository
 import com.pixaplace.ui.screens.login.AuthViewModel
 
 @Composable
