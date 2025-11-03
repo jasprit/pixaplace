@@ -1,13 +1,22 @@
 package com.pixaplace.di
 
 
+import com.pixaplace.Platform
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
+object KoinInitializer {
 
-object Di {
-    fun init() {
+    fun start(platform: Platform) {
+
         startKoin {
-            modules(AppModules.all)
+            modules(
+                appModule(platform)
+            )
         }
-      //  PlatformDi.init()
     }
+}
+
+fun appModule(platform: Platform) = module {
+    single { platform }
+    single { platform.secureStorage }
 }

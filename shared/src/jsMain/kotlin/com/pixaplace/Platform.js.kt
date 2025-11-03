@@ -1,16 +1,10 @@
 package com.pixaplace
 
-import com.pixaplace.platform.Platform
-import com.pixaplace.platform.SecureStorage
-
-class JsPlatform : Platform {
+class JsPlatform: Platform {
     override val name: String = "Web with Kotlin/JS"
+    override val isMobile = false
+    override val isTablet = false
+    override val secureStorage = JSSecureStorage()
 }
 
-actual fun getPlatform(): Platform = JsPlatform()
-
-
-// jsMain (web)
-actual fun isMobile() = false
-actual fun isTablet() = false
-actual fun createSecureStorage(): SecureStorage = JSSecureStorage()
+actual val currentPlatform: Platform = JsPlatform()

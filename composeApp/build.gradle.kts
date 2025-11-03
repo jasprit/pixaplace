@@ -44,6 +44,9 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            // Koin Android for androidContext()
+            implementation("io.insert-koin:koin-android:4.1.1")
         }
         commonMain.dependencies {
             implementation(compose.runtime)

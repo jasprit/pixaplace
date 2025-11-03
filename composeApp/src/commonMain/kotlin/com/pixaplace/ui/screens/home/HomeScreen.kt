@@ -4,7 +4,7 @@ import HomeScreenMobile
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.pixaplace.platform.isMobile
+import com.pixaplace.currentPlatform
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
@@ -14,9 +14,8 @@ fun Home() {
     val viewModel = DealsViewModel() // Use your Koin/Hilt
 
     val state by viewModel.uiState.collectAsState()
-    // val windowSize = calculateWindowSizeClass()
 
-    if (isMobile()) {  // Custom fun: Check screen size or platform
+    if (currentPlatform.isMobile) {  // Custom fun: Check screen size or platform
         HomeScreenMobile { /* More */ }
     } else {
         DealsHomeWeb(state, { }, { })

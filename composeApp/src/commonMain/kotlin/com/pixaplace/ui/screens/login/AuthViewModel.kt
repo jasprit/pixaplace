@@ -2,7 +2,7 @@ package com.pixaplace.ui.screens.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pixaplace.platform.AuthRepository
+import com.pixaplace.storage.AuthRepository
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

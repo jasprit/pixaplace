@@ -1,27 +1,14 @@
 package com.pixaplace
 
-import com.pixaplace.platform.Platform
-import com.pixaplace.platform.SecureStorage
 import com.pixaplace.storage.IOSSecureStorage
-import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.cinterop.useContents
 import platform.UIKit.UIDevice
-import platform.UIKit.UIScreen
+import platform.UIKit.UIUserInterfaceIdiomPad
 
-class IOSPlatform: Platform {
-    override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
+class IOSPlatform : Platform {
+    override val name: String = "iOS"
+    override val isMobile = true
+    override val isTablet = UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad
+    override val secureStorage = IOSSecureStorage()
 }
 
-actual fun getPlatform(): Platform = IOSPlatform()
-
-
-// iosMain
-actual fun isMobile() = true
-@OptIn(ExperimentalForeignApi::class)
-actual fun isTablet(): Boolean {
-    val screenSize = UIScreen.mainScreen.bounds.useContents { size }
-    val minDimension = minOf(screenSize.width, screenSize.height)
-    return minDimension >= 600.0
-}
-
-actual fun createSecureStorage(): SecureStorage = IOSSecureStorage()
+actual val currentPlatform: Platform = IOSPlatform()

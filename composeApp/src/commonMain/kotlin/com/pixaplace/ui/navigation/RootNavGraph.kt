@@ -5,10 +5,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.rememberNavController
-import com.pixaplace.platform.createSecureStorage
+import com.pixaplace.currentPlatform
 import com.pixaplace.presentation.auth.AuthNavGraph
 import com.pixaplace.presentation.auth.MainNavGraph
-import com.pixaplace.platform.AuthRepository
+import com.pixaplace.storage.AuthRepository
 import com.pixaplace.ui.screens.login.AuthViewModel
 
 @Composable
@@ -17,7 +17,7 @@ fun RootNavGraph() {
     val rootController = rememberNavController()
 
     // Single AuthViewModel instance
-    val storage = remember { createSecureStorage() }
+    val storage = remember { currentPlatform.secureStorage }
     val authRepository = remember { AuthRepository(storage) }
 
     val authViewModel = remember { AuthViewModel(authRepository) }

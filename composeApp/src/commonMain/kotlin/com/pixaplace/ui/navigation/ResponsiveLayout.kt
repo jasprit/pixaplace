@@ -8,8 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.pixaplace.platform.isMobile
-import com.pixaplace.platform.isTablet
+import com.pixaplace.currentPlatform
 import com.pixaplace.ui.components.BottomNavigationBar
 import com.pixaplace.ui.screens.login.AuthViewModel
 
@@ -21,8 +20,8 @@ fun ResponsiveLayout(
     authViewModel: AuthViewModel,
     content: @Composable () -> Unit,
 ) {
-    val mobile = isMobile()
-    val tablet = isTablet()
+    val mobile = currentPlatform.isMobile
+    val tablet = currentPlatform.isTablet
 
     when {
         mobile -> {

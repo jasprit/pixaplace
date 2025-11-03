@@ -1,6 +1,8 @@
-package com.pixaplace.platform
+package com.pixaplace
 
+import com.pixaplace.storage.SecureStorage
 
+expect val currentPlatform: Platform
 
 interface Platform {
     val name: String
@@ -9,5 +11,3 @@ interface Platform {
 
     val secureStorage: SecureStorage
 }
-
-expect fun getPlatform(): Platform

@@ -1,9 +1,8 @@
 package com.pixaplace
 
-import com.pixaplace.platform.getPlatform
 
 class Greeting {
-    private val platform = getPlatform()
+    private val platform = currentPlatform
 
     fun greet(): String {
         return "Hello, ${platform.name}!"
