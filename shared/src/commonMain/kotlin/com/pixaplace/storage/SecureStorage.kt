@@ -16,7 +16,6 @@ object StorageKeys {
 }
 
 class AuthRepository(private val storage: SecureStorage) {
-
     suspend fun saveToken(token: String) = storage.save(StorageKeys.TOKEN, token)
     suspend fun getToken(): String? = storage.get(StorageKeys.TOKEN)
     suspend fun removeToken() = storage.remove(StorageKeys.TOKEN)
